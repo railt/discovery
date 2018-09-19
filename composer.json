@@ -48,7 +48,7 @@
         "allows-in-unit-tests": {
             "example": "valid-value"
         },
-        "hidden-from-unit-tests": {
+        "hide-from-unit-tests": {
             "example": "invalid-value"
         }
     },

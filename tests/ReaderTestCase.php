@@ -73,8 +73,8 @@ class ReaderTestCase extends TestCase
      */
     public function testNonDiscoveredFields(Discovery $discovery): void
     {
-        $this->assertNull($discovery->get('hidden-from-unit-tests'));
-        $this->assertNull($discovery->get('hidden-from-unit-tests.example'));
+        $this->assertNull($discovery->get('hide-from-unit-tests'));
+        $this->assertNull($discovery->get('hide-from-unit-tests.example'));
     }
 
     /**
