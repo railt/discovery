@@ -13,7 +13,6 @@ use Composer\Composer;
 use Composer\Installer\InstallationManager;
 use Composer\Package\RootPackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
-use Composer\Repository\WritableRepositoryInterface;
 
 /**
  * Class ExtraLoader
@@ -41,9 +40,9 @@ class Reader
      */
     public function __construct(Composer $composer)
     {
-        $this->package = $composer->getPackage();
+        $this->package   = $composer->getPackage();
         $this->installer = $composer->getInstallationManager();
-        $this->local = $composer->getRepositoryManager()->getLocalRepository();
+        $this->local     = $composer->getRepositoryManager()->getLocalRepository();
     }
 
     /**

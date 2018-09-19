@@ -47,7 +47,7 @@ class ReaderTestCase extends TestCase
      */
     public function testNamespaces(Discovery $discovery): void
     {
-        $this->assertEquals(['allows-in-unit-tests'], \array_keys($discovery->all()));
+        $this->assertSame(['allows-in-unit-tests'], \array_keys($discovery->all()));
     }
 
     /**
@@ -87,8 +87,8 @@ class ReaderTestCase extends TestCase
      */
     public function testDiscoveredFields(Discovery $discovery): void
     {
-        $this->assertEquals(['example' => 'valid-value'], $discovery->get('allows-in-unit-tests'));
-        $this->assertEquals('valid-value', $discovery->get('allows-in-unit-tests.example'));
+        $this->assertSame(['example' => 'valid-value'], $discovery->get('allows-in-unit-tests'));
+        $this->assertSame('valid-value', $discovery->get('allows-in-unit-tests.example'));
         $this->assertNull($discovery->get('allows-in-unit-tests.example.undefined'));
     }
 }
