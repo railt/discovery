@@ -46,7 +46,7 @@ class Discovery
      * @return Discovery
      * @throws \RuntimeException
      */
-    public static function fromComposer(Composer $composer): Discovery
+    public static function fromComposer(Composer $composer): self
     {
         $path = $composer->getConfig()->get('vendor-dir') . '/composer';
 
@@ -57,7 +57,7 @@ class Discovery
      * @param ClassLoader $loader
      * @return Discovery
      */
-    public static function fromClassLoader(ClassLoader $loader): Discovery
+    public static function fromClassLoader(ClassLoader $loader): self
     {
         $reflection = new \ReflectionObject($loader);
 
@@ -99,7 +99,7 @@ class Discovery
      * @param array $data
      * @return Discovery
      */
-    public function set(array $data): Discovery
+    public function set(array $data): self
     {
         $this->data = $data;
 
