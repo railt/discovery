@@ -35,13 +35,13 @@ abstract class TestCase extends BaseTestCase
                 'allows-in-unit-tests',
             ],
             'discovery:except' => [
-                'allows-in-unit-tests:hidden'
+                'allows-in-unit-tests:hidden',
             ],
             'allows-in-unit-tests' => [
                 'example' => 'valid-value',
-                'hidden' => [
-                    'value'
-                ]
+                'hidden'  => [
+                    'value',
+                ],
             ],
             'hide-from-unit-tests' => [
                 'example' => 'invalid-value',
@@ -70,7 +70,7 @@ abstract class TestCase extends BaseTestCase
      */
     private function read(): array
     {
-        return \json_decode(\file_get_contents(self::COMPOSER_PATH),  true);
+        return \json_decode(\file_get_contents(self::COMPOSER_PATH), true);
     }
 
     /**
