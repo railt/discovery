@@ -66,7 +66,7 @@ class Discovery
         ]);
 
         foreach ($paths as $path) {
-            if (\is_dir($path)) {
+            if (\is_file($path . '/autoload.php')) {
                 return new static($path);
             }
         }
