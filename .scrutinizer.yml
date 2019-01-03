@@ -52,10 +52,6 @@ filter:
 
 build:
   nodes:
-    analysis:
-      tests:
-        override:
-          - php-scrutinizer-run
     coverage:
       tests:
         override:
@@ -63,10 +59,21 @@ build:
             coverage:
               file: 'clover.xml'
               format: 'clover'
-  environment:
     php71:
-      version: 7.1
+      environment:
+        version: 7.1
+      tests:
+        override:
+          - phpunit
     php72:
-      version: 7.2
+      environment:
+        version: 7.2
+      tests:
+        override:
+          - phpunit
     php73:
-      version: 7.3
+      environment:
+        version: 7.3
+      tests:
+        override:
+          - phpunit
