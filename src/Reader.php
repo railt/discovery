@@ -50,9 +50,9 @@ class Reader
      * @return iterable
      * @throws \InvalidArgumentException
      */
-    public function each(string $key): iterable
+    public function loadExtras(string $key): iterable
     {
-        yield from $this->loadRootExtras($key);
+        yield $this->package => $this->loadRootExtras($key);
         yield from $this->loadDependencyExtras($key);
     }
 
@@ -61,7 +61,7 @@ class Reader
      * @return iterable
      * @throws \InvalidArgumentException
      */
-    private function loadDependencyExtras(string $key): iterable
+    public function loadDependencyExtras(string $key): iterable
     {
         foreach ($this->local->getPackages() as $package) {
             if ($this->installer->isPackageInstalled($this->local, $package)) {
@@ -82,10 +82,10 @@ class Reader
 
     /**
      * @param string $key
-     * @return iterable
+     * @return array
      */
-    private function loadRootExtras(string $key): iterable
+    public function loadRootExtras(string $key): array
     {
-        yield $this->package => $this->readExtra($this->package->getExtra(), $key);
+        return $this->readExtra($this->package->getExtra(), $key);
     }
 }

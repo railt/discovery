@@ -33,7 +33,7 @@ composer require railt/discovery
 
 ## Usage
 
-Railt Discover provides the ability to implement a cross-package 
+Discovery provides the ability to implement a cross-package 
 configuration using `composer.json`.
 
 In order to access the configuration group, you must specify the key 
@@ -42,47 +42,126 @@ name in the `extra` section:
 ```json
 {
     "extra": {
-        "discovery": ["railt"]
+        "discovery": ["your-key"]
     }
 }
 ```
 
-In this case, the "`railt`" section is exported to the project. So the 
-data from the `railt` section of *all packages* used in your application 
-will be available.
+## Values Export
 
-As example:
+Any group that is listed inside the `{"extra": {"discovery": ...}}` section 
+will be available, exported and readable.
+
 ```json
 {
-    "name": "vendor/package-1",
     "extra": {
-        "railt": { "commands": [ "Vendor\\Package1\\ConsoleScript" ] }
-    }
-}
-```
-```json
-{
-    "name": "vendor/package-2",
-    "extra": {
-        "railt": { "commands": [ "Vendor\\Package2\\ConsoleScript2" ] }
+        "discovery": ["example-2"],
+        "example-1": "value", // This section will be IGNORED
+        "example-2": "value" // Only this section will be exported
     }
 }
 ```
 
-In order to get the data, you need to call the `get` method of the `Discovery` class.
+## Reading Exported Values
+
+After updating the composer dependencies, an object with the specified configs 
+will be formed. In order to further read this data - you need to use the 
+`Discovery` class.
+
+```json
+{
+    "extra": {
+        "discovery": ["config"],
+        "config": {
+            "commands": [
+                "ExampleCommand1",
+                "ExampleCommand2"
+            ]
+        }
+    }
+}
+```
 
 ```php
 <?php
 
-$loader = __DIR__ . '/vendor/autoload.php';
+$discovery = new Railt\Discovery\Discovery(__DIR__ . '/vendor');
+
+$discovery->get('config.commands'); 
+// array(2) { "ExampleCommand1", "ExampleCommand2" }
+```
+
+### Auto Detect
+
+You can try to create a Discovery instance using automatic logic to determine 
+the paths to the vendor directory.
+
+```php
+<?php
+
+$discovery = Railt\Discovery\Discovery::auto();
+```
+
+### From ClassLoader
+
+You can create a new Discovery instance from the Composer ClassLoader.
+
+```php
+<?php
+// Composer ClassLoader
+$loader = require __DIR__ . '/vendor/autoload.php';
 
 $discovery = Railt\Discovery\Discovery::fromClassLoader($loader);
-$commands = $discovery->get('railt.commands');
-
-\var_dump($commands); 
-// Will output:
-// array (
-//  'Vendor\Package1\ConsoleScript',
-//  'Vendor\Package2\ConsoleScript2'
-// )
 ```
+
+### From Composer
+
+You can create instances of Discovery from Composer plugins using the 
+appropriate static constructor.
+
+```php
+<?php
+use Composer\Composer;
+use Railt\Discovery\Discovery;
+
+class ComposerPlugin
+{
+    public function __construct(Composer $composer)
+    {
+        $discovery = Discovery::fromComposer($composer);
+    }
+}
+```
+
+## Export Removal
+
+In order to exclude any value from the export data - you need to 
+register the necessary paths in the section `except:discovery`.
+
+Please note that this rule is valid only in the root package `composer.json`.
+
+```json
+{
+    "extra": {
+        "discovery:except": [
+            "example-1",
+            "example-2:child-1:a",
+            "example-2:test:value-2"
+        ],
+        "example-1": { // This value should be skipped by rule "example-1"
+            "key": "value"
+        },
+        "example-2": {
+            "child-1": {
+                "a": 1, // This value should be skipped by rule "example-2:child-1:a"
+                "b": 2
+            },
+            "test": [
+                "value-1",
+                "value-2" // This value should be skipped by rule "example-2:test:value-2"
+            ]
+        }
+    }
+}
+```
+

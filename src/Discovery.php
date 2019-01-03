@@ -20,7 +20,7 @@ class Discovery
     /**
      * @var string
      */
-    public const DISCOVERY_MANIFEST_FILENAME = 'discovery.json';
+    public const DISCOVERY_MANIFEST_FILENAME = 'composer/discovery.json';
 
     /**
      * @var string
@@ -48,9 +48,31 @@ class Discovery
      */
     public static function fromComposer(Composer $composer): self
     {
-        $path = $composer->getConfig()->get('vendor-dir') . '/composer';
+        $path = $composer->getConfig()->get('vendor-dir');
 
         return new static($path);
+    }
+
+    /**
+     * @param array $paths
+     * @return Discovery
+     * @throws \LogicException
+     */
+    public static function auto(array $paths = []): self
+    {
+        $paths = \array_merge($paths, [
+            __DIR__ . '/../vendor',
+            __DIR__ . '/../../..'
+        ]);
+
+        foreach ($paths as $path) {
+            if (\is_dir($path)) {
+                return new static($path);
+            }
+        }
+
+        $error = 'Unable to determine the installation directory of the composer';
+        throw new \LogicException($error);
     }
 
     /**
@@ -61,7 +83,7 @@ class Discovery
     {
         $reflection = new \ReflectionObject($loader);
 
-        return new static(\dirname($reflection->getFileName()));
+        return new static(\dirname($reflection->getFileName(), 2));
     }
 
     /**

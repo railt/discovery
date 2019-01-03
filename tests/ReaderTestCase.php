@@ -22,6 +22,7 @@ class ReaderTestCase extends TestCase
     /**
      * @return array
      * @throws \RuntimeException
+     * @throws \LogicException
      */
     public function provider(): array
     {
@@ -31,9 +32,10 @@ class ReaderTestCase extends TestCase
         $composer->setConfig(new Config(false, __DIR__ . '/../'));
 
         return [
-            '__construct'     => [new Discovery(__DIR__ . '/../vendor/composer')],
+            '__construct'     => [new Discovery(__DIR__ . '/../vendor')],
             'fromClassLoader' => [Discovery::fromClassLoader($loader)],
             'fromComposer'    => [Discovery::fromComposer($composer)],
+            'auto'            => [Discovery::auto()],
         ];
     }
 

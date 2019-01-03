@@ -1,7 +1,7 @@
 {
     "name": "railt/discovery",
     "type": "library",
-    "description": "Lightweight cross-package configuration loader",
+    "description": "Cross-package composer-based configuration loader",
     "license": "MIT",
     "keywords": [
         "console",
@@ -30,26 +30,12 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
+        "phpunit/phpunit": "^7.5",
         "composer/composer": "~1.1"
     },
     "autoload-dev": {
         "psr-4": {
             "Railt\\Tests\\Discovery\\": "tests"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Railt\\Discovery\\Manifest::discover"
-        ]
-    },
-    "extra": {
-        "discovery": ["allows-in-unit-tests"],
-        "allows-in-unit-tests": {
-            "example": "valid-value"
-        },
-        "hide-from-unit-tests": {
-            "example": "invalid-value"
         }
     },
     "config": {
