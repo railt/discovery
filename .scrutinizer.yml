@@ -64,5 +64,9 @@ build:
               file: 'clover.xml'
               format: 'clover'
   environment:
-    php:
+    php71:
       version: 7.1
+    php72:
+      version: 7.2
+    php73:
+      version: 7.3
