@@ -56,13 +56,13 @@ build:
       tests:
         override:
           - php-scrutinizer-run
+    tests:
+      override:
+        -
+          command: 'vendor/bin/phpunit --coverage-clover=clover.xml'
+          coverage:
+            file: 'clover.xml'
+            format: 'clover'
   environment:
     php:
       version: 7.1
-  tests:
-    override:
-      -
-        command: 'vendor/bin/phpunit --coverage-clover=clover.xml'
-        coverage:
-          file: 'clover.xml'
-          format: 'clover'
