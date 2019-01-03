@@ -52,7 +52,7 @@ name in the `extra` section:
 Any group that is listed inside the `{"extra": {"discovery": ...}}` section 
 will be available, exported and readable.
 
-```json
+```json5
 {
     "extra": {
         "discovery": ["example-2"],
@@ -140,7 +140,7 @@ register the necessary paths in the section `except:discovery`.
 
 Please note that this rule is valid only in the root package `composer.json`.
 
-```json
+```json5
 {
     "extra": {
         "discovery:except": [
