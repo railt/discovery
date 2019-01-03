@@ -62,7 +62,7 @@ class Discovery
     {
         $paths = \array_merge($paths, [
             __DIR__ . '/../vendor',
-            __DIR__ . '/../../..'
+            __DIR__ . '/../../..',
         ]);
 
         foreach ($paths as $path) {

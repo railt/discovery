@@ -40,9 +40,9 @@ class Reader
      */
     public function __construct(Composer $composer)
     {
-        $this->package   = $composer->getPackage();
+        $this->package = $composer->getPackage();
         $this->installer = $composer->getInstallationManager();
-        $this->local     = $composer->getRepositoryManager()->getLocalRepository();
+        $this->local = $composer->getRepositoryManager()->getLocalRepository();
     }
 
     /**
