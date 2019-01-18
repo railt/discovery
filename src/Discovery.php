@@ -62,6 +62,7 @@ class Discovery
     {
         $paths = \array_merge($paths, [
             __DIR__ . '/../vendor',
+            __DIR__ . '/../../vendor',
             __DIR__ . '/../../..',
         ]);
 
@@ -71,17 +72,21 @@ class Discovery
             }
         }
 
-        $error = 'Unable to determine the installation directory of the composer';
-        throw new \LogicException($error);
+        try {
+            return static::fromClassLoader();
+        } catch (\Throwable $e) {
+            $error = 'Unable to determine the installation directory of the composer';
+            throw new \LogicException($error);
+        }
     }
 
     /**
-     * @param ClassLoader $loader
      * @return Discovery
+     * @throws \ReflectionException
      */
-    public static function fromClassLoader(ClassLoader $loader): self
+    public static function fromClassLoader(): self
     {
-        $reflection = new \ReflectionObject($loader);
+        $reflection = new \ReflectionClass(ClassLoader::class);
 
         return new static(\dirname($reflection->getFileName(), 2));
     }
