@@ -22,6 +22,9 @@
     "require": {
         "php": "^7.1.3",
         "ext-json": "*",
+        "composer/semver": "^1.0",
+        "railt/json": "1.4.*|1.4.x-dev",
+        "justinrainbow/json-schema": "~5.2",
         "composer-plugin-api": "^1.1"
     },
     "autoload": {
@@ -31,12 +34,24 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5",
-        "composer/composer": "~1.1"
+        "railt/railt": "1.4.*|1.4.x-dev",
+        "composer/composer": "~1.1",
+        "symfony/var-dumper": "~3.4|~4.0"
     },
     "autoload-dev": {
         "psr-4": {
             "Railt\\Tests\\Discovery\\": "tests"
         }
+    },
+    "extra": {
+        "discovery": {
+            "railt": "${dir}/resources/example.schema.json"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Railt\\Discovery\\Manifest::discover"
+        ]
     },
     "config": {
         "sort-packages": true
