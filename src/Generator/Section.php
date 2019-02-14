@@ -60,7 +60,7 @@ class Section
      * @throws \JsonException
      * @throws \Railt\Io\Exception\NotReadableException
      */
-    public function merge(Section $section): void
+    public function merge(self $section): void
     {
         foreach ($section->getSchemas() as $schema) {
             $this->schemas[] = $schema;
@@ -79,7 +79,7 @@ class Section
         $schemas = (array)($this->data['schema'] ?? []);
 
         foreach ($schemas as $schema) {
-            yield Validator::fromFile(File::fromPathname($directory . '/' .  $schema));
+            yield Validator::fromFile(File::fromPathname($directory . '/' . $schema));
         }
     }
 

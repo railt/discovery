@@ -38,5 +38,5 @@ interface ReaderInterface
      * @param mixed $value
      * @return ReaderInterface
      */
-    public function define(string $variable, $value): ReaderInterface;
+    public function define(string $variable, $value): self;
 }

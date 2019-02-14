@@ -141,7 +141,7 @@ class Package
 
                 yield new Section($this, $name, (array)$data);
             }
-        } catch (ValidationException|JsonValidationExceptionInterface $e) {
+        } catch (ValidationException | JsonValidationExceptionInterface $e) {
             throw new ConfigurationException($e->getMessage());
         }
     }

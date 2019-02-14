@@ -52,7 +52,7 @@ class Generator
 
         try {
             $this->bootSections();
-        } catch (NotReadableException|\JsonException $e) {
+        } catch (NotReadableException | \JsonException $e) {
             throw new ConfigurationException($e->getMessage(), $e->getCode(), $e);
         }
     }
