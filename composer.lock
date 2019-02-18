@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89ed213242891e50258c6bfed9b49ce3",
+    "content-hash": "7a12a824939ccbb3fbda5b13284d5a90",
     "packages": [
         {
             "name": "composer/semver",
@@ -598,12 +598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/railt/railt.git",
-                "reference": "162d1e236b65b37ff2b2ccd5f3352b502534db9c"
+                "reference": "0356978ac22d03ae3e8c80f3457cea1d4bb59ebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/railt/railt/zipball/162d1e236b65b37ff2b2ccd5f3352b502534db9c",
-                "reference": "162d1e236b65b37ff2b2ccd5f3352b502534db9c",
+                "url": "https://api.github.com/repos/railt/railt/zipball/0356978ac22d03ae3e8c80f3457cea1d4bb59ebc",
+                "reference": "0356978ac22d03ae3e8c80f3457cea1d4bb59ebc",
                 "shasum": ""
             },
             "require": {
@@ -644,8 +644,7 @@
                 "railt/compiler": "1.4.*|1.4.x-dev",
                 "symfony/dependency-injection": "~3.4|~4.0",
                 "symfony/finder": "~3.4|~4.0",
-                "symfony/var-dumper": "~3.4|~4.0",
-                "vimeo/psalm": "~0.3"
+                "symfony/var-dumper": "~3.4|~4.0"
             },
             "suggest": {
                 "monolog/monolog": "(1.*) PSR-3 Logger Implementation"
@@ -718,7 +717,7 @@
                 "reflection",
                 "sdl"
             ],
-            "time": "2019-02-15T22:37:40+00:00"
+            "time": "2019-02-17T16:10:47+00:00"
         },
         {
             "name": "symfony/console",
@@ -2141,16 +2140,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.5",
+            "version": "7.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9"
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
-                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
                 "shasum": ""
             },
             "require": {
@@ -2221,7 +2220,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-15T14:00:34+00:00"
+            "time": "2019-02-18T09:24:50+00:00"
         },
         {
             "name": "psr/log",

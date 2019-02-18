@@ -22,15 +22,14 @@ class Manifest
      * @param Event $event
      * @throws ValidationException
      * @throws \RuntimeException
+     * @throws \Throwable
      */
     public static function discover(Event $event): void
     {
         self::requireAutoloader($event->getComposer());
 
         $generator = new Generator($event->getComposer(), $event->getIO());
-        $result = $generator->run();
-
-        \var_dump($result);
+        $generator->save($generator->run());
     }
 
     /**
@@ -39,8 +38,7 @@ class Manifest
      */
     private static function requireAutoloader(Composer $composer): void
     {
-        $config = $composer->getConfig();
-        $vendor = $config->get('vendor-dir');
+        $vendor = $composer->getConfig()->get('vendor-dir');
 
         if (\is_file($vendor . '/autoload.php')) {
             require_once $vendor . '/autoload.php';

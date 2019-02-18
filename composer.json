@@ -44,11 +44,6 @@
             "Railt\\Tests\\Discovery\\": "tests"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "*": "1.4.x-dev"
-        }
-    },
     "scripts": {
         "post-autoload-dump": [
             "Railt\\Discovery\\Manifest::discover"

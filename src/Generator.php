@@ -9,14 +9,18 @@ declare(strict_types=1);
 
 namespace Railt\Discovery;
 
+use Composer\Autoload\ClassLoader;
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Railt\Discovery\Composer\DiscoveryConfiguration;
 use Railt\Discovery\Composer\Package;
 use Railt\Discovery\Composer\Reader;
 use Railt\Discovery\Composer\Section;
-use Railt\Discovery\Composer\SectionConfiguration;
+use Railt\Discovery\Composer\DiscoverySection;
 use Railt\Discovery\Exception\ValidationException;
+use Railt\Io\Readable;
 use Railt\Json\Exception\JsonValidationExceptionInterface;
+use Railt\Json\Json;
 use Railt\Json\ValidatorInterface;
 
 /**
@@ -47,8 +51,22 @@ class Generator
     }
 
     /**
+     * @param array $data
+     * @return Readable
+     * @throws \RuntimeException
+     */
+    public function save(array $data): Readable
+    {
+        $config = $this->composer->getConfig();
+        $directory = $config->get('vendor-dir');
+
+        return Json::write($directory . '/discovery.json', $data);
+    }
+
+    /**
      * @return array
      * @throws ValidationException
+     * @throws \Throwable
      */
     public function run(): array
     {
@@ -56,15 +74,25 @@ class Generator
 
         $sections = [];
 
-        foreach ($this->collect($reader, $this->io) as $section) {
+        /**
+         * @var Section $section
+         * @var DiscoveryConfiguration[] $configs
+         */
+        foreach ($this->collect($reader, $this->io) as $section => $configs) {
             $name = $section->getName();
 
             if (! isset($sections[$name])) {
                 $sections[$name] = [];
             }
 
+            $value = $section->get();
+
+            foreach ($configs as $config) {
+                $value = $config->filter($value);
+            }
+
             /** @noinspection SlowArrayOperationsInLoopInspection */
-            $sections[$name] = \array_merge_recursive($sections[$name], $section->get());
+            $sections[$name] = \array_merge_recursive($sections[$name], $value);
         }
 
         return $sections;
@@ -73,14 +101,15 @@ class Generator
     /**
      * @param Reader $reader
      * @param IOInterface $io
-     * @return \Traversable|Section[]
+     * @return \Traversable|DiscoveryConfiguration[][]
      * @throws ValidationException
+     * @throws \Throwable
      */
     private function collect(Reader $reader, IOInterface $io): \Traversable
     {
         $sections = $this->loadConfigs($reader);
 
-        foreach ($sections as $name => $validators) {
+        foreach ($sections as $name => $configs) {
             $io->write(\sprintf('Discovery: <info>%s</info>', $name));
 
             /**
@@ -91,17 +120,21 @@ class Generator
                 $io->write(\sprintf('    import from <comment>%s</comment>: ', $package->getName()), false);
 
                 try {
-                    $section->validateAll($validators);
+                    foreach ($configs as $i => $config) {
+                        $config->validate($section);
+                    }
                     $io->write('<info>OK</info>');
+
                 } catch (JsonValidationExceptionInterface $e) {
-                    $io->write('<error>FAIL</error>');
+                    $io->write('<error> ERROR: ' . $e->getMessage() . ' </error>');
                     throw ValidationException::fromJsonException($e, $package, $section);
                 } catch (\Throwable $e) {
-                    $io->write('<error>FAIL</error>');
-                    throw ValidationException::fromException($e, $package);
+                    $io->write('<error> ERROR </error>');
+
+                    throw $e;
                 }
 
-                yield $section;
+                yield $section => $configs;
             }
         }
     }
@@ -124,20 +157,18 @@ class Generator
 
     /**
      * @param Reader $reader
-     * @return array
+     * @return array|DiscoveryConfiguration[][]
      */
     private function loadConfigs(Reader $reader): array
     {
         $sections = [];
 
-        foreach ($this->readConfigs($reader) as $name => $validator) {
+        foreach ($this->readConfigs($reader) as $name => $config) {
             if (! isset($sections[$name])) {
                 $sections[$name] = [];
             }
 
-            if ($validator !== null) {
-                $sections[$name][] = $validator;
-            }
+            $sections[$name][] = $config;
         }
 
         return $sections;
@@ -145,17 +176,15 @@ class Generator
 
     /**
      * @param Reader $reader
-     * @return \Traversable|ValidatorInterface[]|null[]
+     * @return \Traversable|DiscoveryConfiguration[]
      */
     private function readConfigs(Reader $reader): \Traversable
     {
         foreach ($reader->getPackages() as $package) {
-            $section = $package->getSection(SectionConfiguration::KEY_DISCOVERY);
+            $section = $package->getSection(DiscoverySection::KEY_DISCOVERY);
 
             if ($section !== null) {
-                foreach ($section->getConfiguration() as $name => $validator) {
-                    yield $name => $validator;
-                }
+                yield from $section->getConfiguration();
             }
         }
     }

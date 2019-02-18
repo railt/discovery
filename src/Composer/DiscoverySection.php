@@ -17,19 +17,14 @@ use Railt\Json\Validator;
 use Railt\Json\ValidatorInterface;
 
 /**
- * Class SectionConfiguration
+ * Class DiscoverySection
  */
-class SectionConfiguration implements \IteratorAggregate
+class DiscoverySection implements \IteratorAggregate
 {
     /**
      * @var string
      */
     public const KEY_DISCOVERY = 'discovery';
-
-    /**
-     * @var string
-     */
-    public const KEY_SCHEMA = 'schema';
 
     /**
      * @var string
@@ -47,7 +42,7 @@ class SectionConfiguration implements \IteratorAggregate
     private $package;
 
     /**
-     * SectionConfiguration constructor.
+     * DiscoverySection constructor.
      *
      * @param Package $package
      * @param Section $section
@@ -70,7 +65,7 @@ class SectionConfiguration implements \IteratorAggregate
             foreach ($this->section->get() as $name => $configs) {
                 [$name, $configs] = \is_int($name) ? [$configs, null] : [$name, $configs];
 
-                yield $name => $this->createValidator($configs);
+                yield $name => new DiscoveryConfiguration((array)$configs);
             }
         } catch (JsonValidationExceptionInterface $e) {
             throw ConfigurationException::fromJsonException($e, $this->package, $this->section);
@@ -89,22 +84,5 @@ class SectionConfiguration implements \IteratorAggregate
         $file = File::fromPathname(self::JSON_SCHEMA_CONFIG_FILE);
 
         return Validator::fromFile($file);
-    }
-
-    /**
-     * @param mixed $data
-     * @return ValidatorInterface
-     * @throws \JsonException
-     * @throws \Railt\Io\Exception\NotReadableException
-     */
-    private function createValidator($data): ?ValidatorInterface
-    {
-        if (\is_array($data) && isset($data[self::KEY_SCHEMA])) {
-            $file = File::fromPathname($data[self::KEY_SCHEMA]);
-
-            return Validator::fromFile($file);
-        }
-
-        return null;
     }
 }

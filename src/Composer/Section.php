@@ -57,11 +57,11 @@ class Section
     }
 
     /**
-     * @return SectionConfiguration
+     * @return DiscoverySection
      */
-    public function getConfiguration(): SectionConfiguration
+    public function getConfiguration(): DiscoverySection
     {
-        return new SectionConfiguration($this->package, $this);
+        return new DiscoverySection($this->package, $this);
     }
 
     /**
