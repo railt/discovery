@@ -11,7 +11,6 @@ namespace Railt\Discovery\Composer;
 
 use Railt\Discovery\Exception\ConfigurationException;
 use Railt\Discovery\Exception\ValidationException;
-use Railt\Io\Exception\NotReadableException;
 use Railt\Io\File;
 use Railt\Json\Exception\JsonValidationExceptionInterface;
 use Railt\Json\Validator;
@@ -75,7 +74,6 @@ class SectionConfiguration implements \IteratorAggregate
             }
         } catch (JsonValidationExceptionInterface $e) {
             throw ConfigurationException::fromJsonException($e, $this->package, $this->section);
-
         } catch (\Throwable $e) {
             throw ConfigurationException::fromException($e, $this->package);
         }

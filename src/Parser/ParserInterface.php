@@ -19,13 +19,13 @@ interface ParserInterface
      * @param string|\Closure $value
      * @return ParserInterface
      */
-    public function define(string $variable, $value): ParserInterface;
+    public function define(string $variable, $value): self;
 
     /**
      * @param iterable $variables
      * @return ParserInterface
      */
-    public function defineAll(iterable $variables): ParserInterface;
+    public function defineAll(iterable $variables): self;
 
     /**
      * @param mixed $value

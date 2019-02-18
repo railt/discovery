@@ -11,7 +11,6 @@ namespace Railt\Discovery;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Composer\Script\Event;
 use Railt\Discovery\Composer\Package;
 use Railt\Discovery\Composer\Reader;
 use Railt\Discovery\Composer\Section;
@@ -94,11 +93,9 @@ class Generator
                 try {
                     $section->validateAll($validators);
                     $io->write('<info>OK</info>');
-
                 } catch (JsonValidationExceptionInterface $e) {
                     $io->write('<error>FAIL</error>');
                     throw ValidationException::fromJsonException($e, $package, $section);
-
                 } catch (\Throwable $e) {
                     $io->write('<error>FAIL</error>');
                     throw ValidationException::fromException($e, $package);
