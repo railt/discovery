@@ -12,6 +12,6 @@ namespace Railt\Discovery\Exception;
 /**
  * Class ConfigurationException
  */
-class ConfigurationException extends \LogicException
+class ConfigurationException extends ValidationException
 {
 }

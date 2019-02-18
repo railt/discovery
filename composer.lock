@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55f7d79bfc36b3001b54932948f7eae5",
+    "content-hash": "89ed213242891e50258c6bfed9b49ce3",
     "packages": [
         {
             "name": "composer/semver",
@@ -598,12 +598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/railt/railt.git",
-                "reference": "ec1b4d4b758b10e2499b3bf1bbf7798354cf60d7"
+                "reference": "162d1e236b65b37ff2b2ccd5f3352b502534db9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/railt/railt/zipball/ec1b4d4b758b10e2499b3bf1bbf7798354cf60d7",
-                "reference": "ec1b4d4b758b10e2499b3bf1bbf7798354cf60d7",
+                "url": "https://api.github.com/repos/railt/railt/zipball/162d1e236b65b37ff2b2ccd5f3352b502534db9c",
+                "reference": "162d1e236b65b37ff2b2ccd5f3352b502534db9c",
                 "shasum": ""
             },
             "require": {
@@ -644,7 +644,8 @@
                 "railt/compiler": "1.4.*|1.4.x-dev",
                 "symfony/dependency-injection": "~3.4|~4.0",
                 "symfony/finder": "~3.4|~4.0",
-                "symfony/var-dumper": "~3.4|~4.0"
+                "symfony/var-dumper": "~3.4|~4.0",
+                "vimeo/psalm": "~0.3"
             },
             "suggest": {
                 "monolog/monolog": "(1.*) PSR-3 Logger Implementation"
@@ -654,9 +655,11 @@
             ],
             "type": "library",
             "extra": {
-                "discovery": [
-                    "railt"
-                ],
+                "discovery": {
+                    "railt": {
+                        "schema": "${package.dir}/resources/railt.schema.json5"
+                    }
+                },
                 "railt": {
                     "preload": {
                         "extensions": [
@@ -715,7 +718,7 @@
                 "reflection",
                 "sdl"
             ],
-            "time": "2019-02-14T16:56:13+00:00"
+            "time": "2019-02-15T22:37:40+00:00"
         },
         {
             "name": "symfony/console",
@@ -2138,16 +2141,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.4",
+            "version": "7.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0"
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2896657da5fb237bc316bdfc18c2650efeee0dc0",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
                 "shasum": ""
             },
             "require": {
@@ -2218,7 +2221,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-07T14:15:04+00:00"
+            "time": "2019-02-15T14:00:34+00:00"
         },
         {
             "name": "psr/log",
@@ -3245,6 +3248,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "railt/io": 20,
         "railt/json": 20,
         "railt/railt": 20
     },

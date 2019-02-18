@@ -9,42 +9,41 @@ declare(strict_types=1);
 
 namespace Railt\Discovery;
 
+use Composer\Composer;
 use Composer\Script\Event;
+use Railt\Discovery\Exception\ValidationException;
 
 /**
  * Class Manifest
- *
- * @deprecated Please use "Railt\Discovery\Generator::build" instead
  */
 class Manifest
 {
     /**
-     * @var string
-     */
-    private const DEPRECATION_NOTICE =
-        '<comment>The "%s" composer script is deprecated and may be ' .
-        'removed in future releases, please use "%s" instead</comment>';
-
-    /**
-     * @deprecated Please use "Railt\Discovery\Generator::build" instead
-     *
      * @param Event $event
+     * @throws ValidationException
+     * @throws \RuntimeException
      */
     public static function discover(Event $event): void
     {
-        $event->getIO()->write(self::deprecationMessage());
+        self::requireAutoloader($event->getComposer());
 
-        Generator::build($event);
+        $generator = new Generator($event->getComposer(), $event->getIO());
+        $result = $generator->run();
+
+        \var_dump($result);
     }
 
     /**
-     * @return string
+     * @param Composer $composer
+     * @throws \RuntimeException
      */
-    private static function deprecationMessage(): string
+    private static function requireAutoloader(Composer $composer): void
     {
-        return \vsprintf(self::DEPRECATION_NOTICE, [
-            static::class . '::discover',
-            Generator::class . '::build',
-        ]);
+        $config = $composer->getConfig();
+        $vendor = $config->get('vendor-dir');
+
+        if (\is_file($vendor . '/autoload.php')) {
+            require_once $vendor . '/autoload.php';
+        }
     }
 }

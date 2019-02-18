@@ -23,6 +23,7 @@
         "php": "^7.1.3",
         "ext-json": "*",
         "composer/semver": "^1.0",
+        "railt/io": "1.4.*|1.4.x-dev",
         "railt/json": "1.4.*|1.4.x-dev",
         "justinrainbow/json-schema": "~5.2",
         "composer-plugin-api": "^1.1"
@@ -44,8 +45,8 @@
         }
     },
     "extra": {
-        "discovery": {
-            "railt": "${dir}/resources/example.schema.json"
+        "branch-alias": {
+            "*": "1.4.x-dev"
         }
     },
     "scripts": {
