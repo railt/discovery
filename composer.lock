@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a12a824939ccbb3fbda5b13284d5a90",
+    "content-hash": "b05036803173642b9e8437a66974e53b",
     "packages": [
         {
             "name": "composer/semver",
@@ -137,7 +137,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.7.26",
+            "version": "v5.7.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -181,7 +181,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.7.26",
+            "version": "v5.7.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -598,12 +598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/railt/railt.git",
-                "reference": "0356978ac22d03ae3e8c80f3457cea1d4bb59ebc"
+                "reference": "c3ed228ff010efab7d717ebbdba6a4e86700736f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/railt/railt/zipball/0356978ac22d03ae3e8c80f3457cea1d4bb59ebc",
-                "reference": "0356978ac22d03ae3e8c80f3457cea1d4bb59ebc",
+                "url": "https://api.github.com/repos/railt/railt/zipball/c3ed228ff010efab7d717ebbdba6a4e86700736f",
+                "reference": "c3ed228ff010efab7d717ebbdba6a4e86700736f",
                 "shasum": ""
             },
             "require": {
@@ -670,18 +670,22 @@
                         "extensions": [
                             "graphqls",
                             "graphql"
+                        ],
+                        "paths": [
+                            "${package.dir}/resources/routing",
+                            "${package.dir}/resources/class-loader"
                         ]
                     },
                     "commands": [
-                        "Railt\\SDL\\Console\\SDLGrammarCompileCommand",
                         "Railt\\Json\\Console\\Json5CompileCommand",
+                        "Railt\\SDL\\Console\\SDLGrammarCompileCommand",
                         "Railt\\Foundation\\Console\\ExtensionsListCommand"
                     ],
                     "extensions": [
+                        "Railt\\Debug\\DebugExtension",
                         "Railt\\ClassLoader\\ClassLoaderExtension",
                         "Railt\\Routing\\RouterExtension",
-                        "Railt\\Foundation\\Debug\\DebugExtension",
-                        "Railt\\Foundation\\Normalization\\NormalizationExtension"
+                        "Railt\\Normalization\\NormalizationExtension"
                     ]
                 }
             },
@@ -717,7 +721,7 @@
                 "reflection",
                 "sdl"
             ],
-            "time": "2019-02-17T16:10:47+00:00"
+            "time": "2019-02-19T16:09:38+00:00"
         },
         {
             "name": "symfony/console",
