@@ -29,7 +29,7 @@ class DiscoverySection implements \IteratorAggregate
     /**
      * @var string
      */
-    private const JSON_SCHEMA_CONFIG_FILE = __DIR__ . '/../../resources/discovery.schema.json5';
+    private const JSON_SCHEMA_CONFIG_FILE = __DIR__ . '/../../../resources/discovery.schema.json5';
 
     /**
      * @var Section
