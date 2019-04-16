@@ -31,7 +31,7 @@ composer require railt/discovery
 {
     "scripts": {
          "post-autoload-dump": [
-             "Railt\\Discovery\\Manifest::discover"
+             "Railt\\Component\\Discovery\\Manifest::discover"
          ]
      }
 }
@@ -91,7 +91,7 @@ will be formed. In order to further read this data - you need to use the
 ```php
 <?php
 
-$discovery = new Railt\Discovery\Discovery(__DIR__ . '/vendor');
+$discovery = new Railt\Component\Discovery\Discovery(__DIR__ . '/vendor');
 
 $discovery->get('config.commands'); 
 // array(2) { "ExampleCommand1", "ExampleCommand2" }
@@ -105,7 +105,7 @@ the paths to the vendor directory.
 ```php
 <?php
 
-$discovery = Railt\Discovery\Discovery::auto();
+$discovery = Railt\Component\Discovery\Discovery::auto();
 ```
 
 ### From ClassLoader
@@ -117,7 +117,7 @@ You can create a new Discovery instance from the Composer ClassLoader.
 // Composer ClassLoader
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-$discovery = Railt\Discovery\Discovery::fromClassLoader($loader);
+$discovery = Railt\Component\Discovery\Discovery::fromClassLoader($loader);
 ```
 
 ### From Composer
@@ -128,7 +128,7 @@ appropriate static constructor.
 ```php
 <?php
 use Composer\Composer;
-use Railt\Discovery\Discovery;
+use Railt\Component\Discovery\Discovery;
 
 class ComposerPlugin
 {

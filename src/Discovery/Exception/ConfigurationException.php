@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Exception;
+namespace Railt\Component\Discovery\Exception;
 
 /**
  * Class ConfigurationException

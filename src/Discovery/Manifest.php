@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery;
+namespace Railt\Component\Discovery;
 
 use Composer\Composer;
 use Composer\Script\Event;
-use Railt\Discovery\Exception\ValidationException;
+use Railt\Component\Discovery\Exception\ValidationException;
 
 /**
  * Class Manifest

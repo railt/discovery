@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Composer;
+namespace Railt\Component\Discovery\Composer;
 
 /**
  * Class ArrayWalker

@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Parser;
+namespace Railt\Component\Discovery\Parser;
 
 /**
  * Interface ParserInterface

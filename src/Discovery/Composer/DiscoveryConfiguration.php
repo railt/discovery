@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Composer;
+namespace Railt\Component\Discovery\Composer;
 
-use Railt\Io\File;
-use Railt\Json\Validator;
-use Railt\Json\ValidatorInterface;
+use Railt\Component\Io\File;
+use Railt\Component\Json\Validator;
+use Railt\Component\Json\ValidatorInterface;
 
 /**
  * Class Configuration
@@ -83,7 +83,7 @@ class DiscoveryConfiguration
     /**
      * @param Section $section
      * @throws \JsonException
-     * @throws \Railt\Io\Exception\NotReadableException
+     * @throws \Railt\Component\Io\Exception\NotReadableException
      * @throws \Railt\Json\Exception\JsonException
      */
     public function validate(Section $section): void
@@ -96,7 +96,7 @@ class DiscoveryConfiguration
     /**
      * @return ValidatorInterface|null
      * @throws \JsonException
-     * @throws \Railt\Io\Exception\NotReadableException
+     * @throws \Railt\Component\Io\Exception\NotReadableException
      */
     public function getValidator(): ?ValidatorInterface
     {

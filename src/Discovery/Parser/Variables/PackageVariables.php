@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Parser\Variables;
+namespace Railt\Component\Discovery\Parser\Variables;
 
 use Composer\Package\PackageInterface;
 

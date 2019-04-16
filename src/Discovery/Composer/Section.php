@@ -7,13 +7,13 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Discovery\Composer;
+namespace Railt\Component\Discovery\Composer;
 
-use Railt\Discovery\Parser\ParserInterface;
-use Railt\Json\Exception\JsonException;
-use Railt\Json\Json;
-use Railt\Json\Validator\ResultInterface;
-use Railt\Json\ValidatorInterface;
+use Railt\Component\Discovery\Parser\ParserInterface;
+use Railt\Component\Json\Exception\JsonException;
+use Railt\Component\Json\Json;
+use Railt\Component\Json\Validator\ResultInterface;
+use Railt\Component\Json\ValidatorInterface;
 
 /**
  * Class Section
