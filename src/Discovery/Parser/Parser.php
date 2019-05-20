@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery\Parser;
+namespace Railt\Discovery\Parser;
 
 /**
  * Class Parser

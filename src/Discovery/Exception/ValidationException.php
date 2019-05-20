@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery\Exception;
+namespace Railt\Discovery\Exception;
 
-use Railt\Component\Discovery\Composer\Package;
-use Railt\Component\Discovery\Composer\Section;
-use Railt\Component\Json\Exception\JsonValidationExceptionInterface as E;
+use Railt\Discovery\Composer\Package;
+use Railt\Discovery\Composer\Section;
+use Railt\Json\Exception\JsonValidationExceptionInterface as E;
 
 /**
  * Class ValidationException

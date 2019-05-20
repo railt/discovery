@@ -7,14 +7,14 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery\Composer;
+namespace Railt\Discovery\Composer;
 
-use Railt\Component\Discovery\Exception\ConfigurationException;
-use Railt\Component\Discovery\Exception\ValidationException;
-use Railt\Component\Io\File;
-use Railt\Component\Json\Exception\JsonValidationExceptionInterface;
-use Railt\Component\Json\Validator;
-use Railt\Component\Json\ValidatorInterface;
+use Phplrt\Io\File;
+use Railt\Discovery\Exception\ConfigurationException;
+use Railt\Discovery\Exception\ValidationException;
+use Railt\Json\Exception\JsonValidationExceptionInterface;
+use Railt\Json\Validator;
+use Railt\Json\ValidatorInterface;
 
 /**
  * Class DiscoverySection
@@ -77,7 +77,7 @@ class DiscoverySection implements \IteratorAggregate
     /**
      * @return ValidatorInterface
      * @throws \JsonException
-     * @throws \Railt\Component\Io\Exception\NotReadableException
+     * @throws \Railt\Io\Exception\NotReadableException
      */
     public function getDiscoveryValidator(): ValidatorInterface
     {

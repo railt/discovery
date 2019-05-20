@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery\Composer;
+namespace Railt\Discovery\Composer;
 
 use Composer\Composer;
 

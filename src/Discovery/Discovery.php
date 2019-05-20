@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery;
+namespace Railt\Discovery;
 
 use Composer\Autoload\ClassLoader;
 use Composer\Composer;
-use Railt\Component\Io\File;
-use Railt\Component\Json\Json;
+use Phplrt\Io\File;
+use Railt\Json\Json;
 
 /**
  * Class Discovery
@@ -89,7 +89,7 @@ class Discovery
      * @param string $key
      * @param null $default
      * @return array|mixed|null
-     * @throws \Railt\Component\Io\Exception\NotReadableException
+     * @throws \Railt\Io\Exception\NotReadableException
      */
     public function get(string $key, $default = null)
     {
@@ -110,7 +110,7 @@ class Discovery
 
     /**
      * @return array
-     * @throws \Railt\Component\Io\Exception\NotReadableException
+     * @throws \Railt\Io\Exception\NotReadableException
      */
     public function all(): array
     {

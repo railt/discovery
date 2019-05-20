@@ -7,16 +7,16 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Discovery\Composer;
+namespace Railt\Discovery\Composer;
 
 use Composer\Composer;
 use Composer\Package\PackageInterface;
-use Railt\Component\Discovery\Parser\Parser;
-use Railt\Component\Discovery\Parser\ParserInterface;
-use Railt\Component\Discovery\Parser\Variables\ComposerVariables;
-use Railt\Component\Discovery\Parser\Variables\EnvVariables;
-use Railt\Component\Discovery\Parser\Variables\RootPackageVariables;
-use Railt\Component\Discovery\Parser\Variables\VendorPackageVariables;
+use Railt\Discovery\Parser\Parser;
+use Railt\Discovery\Parser\ParserInterface;
+use Railt\Discovery\Parser\Variables\ComposerVariables;
+use Railt\Discovery\Parser\Variables\EnvVariables;
+use Railt\Discovery\Parser\Variables\RootPackageVariables;
+use Railt\Discovery\Parser\Variables\VendorPackageVariables;
 
 /**
  * Class Package
