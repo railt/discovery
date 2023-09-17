@@ -15,6 +15,8 @@
     <a href="https://raw.githubusercontent.com/railt/discovery/1.4.x/LICENSE.md"><img src="https://poser.pugx.org/railt/discovery/license" alt="License MIT"></a>
 </p>
 
+> This package is **deprecated**.
+
 # Discovery
 
 ## Installation
